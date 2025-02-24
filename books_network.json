@@ -1,0 +1,596 @@
+{
+  "books": [
+    {
+      "title": "TheBeach",
+      "nodes": [
+        {
+          "id": "\u00c9tienne",
+          "count": 308,
+          "type": "PERSON"
+        },
+        {
+          "id": "Jed",
+          "count": 303,
+          "type": "PERSON"
+        },
+        {
+          "id": "Sal",
+          "count": 287,
+          "type": "PERSON"
+        },
+        {
+          "id": "Fran\u00e7oise",
+          "count": 263,
+          "type": "PERSON"
+        },
+        {
+          "id": "Keaty",
+          "count": 244,
+          "type": "PERSON"
+        },
+        {
+          "id": "Richard",
+          "count": 181,
+          "type": "PERSON"
+        },
+        {
+          "id": "Bugs",
+          "count": 147,
+          "type": "PERSON"
+        },
+        {
+          "id": "Duck",
+          "count": 115,
+          "type": "PERSON"
+        },
+        {
+          "id": "Sammy",
+          "count": 100,
+          "type": "PERSON"
+        },
+        {
+          "id": "Karl",
+          "count": 97,
+          "type": "PERSON"
+        },
+        {
+          "id": "Zeph",
+          "count": 96,
+          "type": "PERSON"
+        },
+        {
+          "id": "Christo",
+          "count": 89,
+          "type": "PERSON"
+        },
+        {
+          "id": "Gregorio",
+          "count": 61,
+          "type": "PERSON"
+        },
+        {
+          "id": "Cassie",
+          "count": 58,
+          "type": "PERSON"
+        },
+        {
+          "id": "Jesse",
+          "count": 55,
+          "type": "PERSON"
+        }
+      ],
+      "edges": [
+        {
+          "source": "\u00c9tienne",
+          "target": "Jed",
+          "weight": 20
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Sal",
+          "weight": 35
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Fran\u00e7oise",
+          "weight": 167
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Keaty",
+          "weight": 55
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Richard",
+          "weight": 50
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Bugs",
+          "weight": 17
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Duck",
+          "weight": 15
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Sammy",
+          "weight": 16
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Karl",
+          "weight": 25
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Zeph",
+          "weight": 14
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Christo",
+          "weight": 9
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Gregorio",
+          "weight": 27
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Cassie",
+          "weight": 7
+        },
+        {
+          "source": "\u00c9tienne",
+          "target": "Jesse",
+          "weight": 5
+        },
+        {
+          "source": "Jed",
+          "target": "Sal",
+          "weight": 57
+        },
+        {
+          "source": "Jed",
+          "target": "Fran\u00e7oise",
+          "weight": 28
+        },
+        {
+          "source": "Jed",
+          "target": "Keaty",
+          "weight": 62
+        },
+        {
+          "source": "Jed",
+          "target": "Richard",
+          "weight": 35
+        },
+        {
+          "source": "Jed",
+          "target": "Bugs",
+          "weight": 27
+        },
+        {
+          "source": "Jed",
+          "target": "Duck",
+          "weight": 6
+        },
+        {
+          "source": "Jed",
+          "target": "Sammy",
+          "weight": 20
+        },
+        {
+          "source": "Jed",
+          "target": "Karl",
+          "weight": 13
+        },
+        {
+          "source": "Jed",
+          "target": "Zeph",
+          "weight": 22
+        },
+        {
+          "source": "Jed",
+          "target": "Christo",
+          "weight": 38
+        },
+        {
+          "source": "Jed",
+          "target": "Gregorio",
+          "weight": 8
+        },
+        {
+          "source": "Jed",
+          "target": "Cassie",
+          "weight": 7
+        },
+        {
+          "source": "Jed",
+          "target": "Jesse",
+          "weight": 6
+        },
+        {
+          "source": "Sal",
+          "target": "Fran\u00e7oise",
+          "weight": 25
+        },
+        {
+          "source": "Sal",
+          "target": "Keaty",
+          "weight": 50
+        },
+        {
+          "source": "Sal",
+          "target": "Richard",
+          "weight": 51
+        },
+        {
+          "source": "Sal",
+          "target": "Bugs",
+          "weight": 72
+        },
+        {
+          "source": "Sal",
+          "target": "Duck",
+          "weight": 14
+        },
+        {
+          "source": "Sal",
+          "target": "Sammy",
+          "weight": 18
+        },
+        {
+          "source": "Sal",
+          "target": "Karl",
+          "weight": 27
+        },
+        {
+          "source": "Sal",
+          "target": "Zeph",
+          "weight": 18
+        },
+        {
+          "source": "Sal",
+          "target": "Christo",
+          "weight": 18
+        },
+        {
+          "source": "Sal",
+          "target": "Gregorio",
+          "weight": 18
+        },
+        {
+          "source": "Sal",
+          "target": "Cassie",
+          "weight": 27
+        },
+        {
+          "source": "Sal",
+          "target": "Jesse",
+          "weight": 19
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Keaty",
+          "weight": 50
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Richard",
+          "weight": 38
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Bugs",
+          "weight": 26
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Duck",
+          "weight": 16
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Sammy",
+          "weight": 11
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Karl",
+          "weight": 16
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Zeph",
+          "weight": 14
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Christo",
+          "weight": 7
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Gregorio",
+          "weight": 25
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Cassie",
+          "weight": 5
+        },
+        {
+          "source": "Fran\u00e7oise",
+          "target": "Jesse",
+          "weight": 7
+        },
+        {
+          "source": "Keaty",
+          "target": "Richard",
+          "weight": 27
+        },
+        {
+          "source": "Keaty",
+          "target": "Bugs",
+          "weight": 42
+        },
+        {
+          "source": "Keaty",
+          "target": "Duck",
+          "weight": 1
+        },
+        {
+          "source": "Keaty",
+          "target": "Sammy",
+          "weight": 4
+        },
+        {
+          "source": "Keaty",
+          "target": "Karl",
+          "weight": 18
+        },
+        {
+          "source": "Keaty",
+          "target": "Zeph",
+          "weight": 4
+        },
+        {
+          "source": "Keaty",
+          "target": "Christo",
+          "weight": 9
+        },
+        {
+          "source": "Keaty",
+          "target": "Gregorio",
+          "weight": 27
+        },
+        {
+          "source": "Keaty",
+          "target": "Cassie",
+          "weight": 10
+        },
+        {
+          "source": "Keaty",
+          "target": "Jesse",
+          "weight": 18
+        },
+        {
+          "source": "Richard",
+          "target": "Bugs",
+          "weight": 13
+        },
+        {
+          "source": "Richard",
+          "target": "Duck",
+          "weight": 8
+        },
+        {
+          "source": "Richard",
+          "target": "Sammy",
+          "weight": 3
+        },
+        {
+          "source": "Richard",
+          "target": "Karl",
+          "weight": 5
+        },
+        {
+          "source": "Richard",
+          "target": "Zeph",
+          "weight": 5
+        },
+        {
+          "source": "Richard",
+          "target": "Christo",
+          "weight": 9
+        },
+        {
+          "source": "Richard",
+          "target": "Gregorio",
+          "weight": 9
+        },
+        {
+          "source": "Richard",
+          "target": "Cassie",
+          "weight": 7
+        },
+        {
+          "source": "Richard",
+          "target": "Jesse",
+          "weight": 6
+        },
+        {
+          "source": "Bugs",
+          "target": "Duck",
+          "weight": 11
+        },
+        {
+          "source": "Bugs",
+          "target": "Sammy",
+          "weight": 5
+        },
+        {
+          "source": "Bugs",
+          "target": "Karl",
+          "weight": 5
+        },
+        {
+          "source": "Bugs",
+          "target": "Zeph",
+          "weight": 2
+        },
+        {
+          "source": "Bugs",
+          "target": "Christo",
+          "weight": 5
+        },
+        {
+          "source": "Bugs",
+          "target": "Gregorio",
+          "weight": 9
+        },
+        {
+          "source": "Bugs",
+          "target": "Cassie",
+          "weight": 25
+        },
+        {
+          "source": "Bugs",
+          "target": "Jesse",
+          "weight": 14
+        },
+        {
+          "source": "Duck",
+          "target": "Sammy",
+          "weight": 7
+        },
+        {
+          "source": "Duck",
+          "target": "Zeph",
+          "weight": 9
+        },
+        {
+          "source": "Duck",
+          "target": "Christo",
+          "weight": 4
+        },
+        {
+          "source": "Duck",
+          "target": "Gregorio",
+          "weight": 1
+        },
+        {
+          "source": "Duck",
+          "target": "Cassie",
+          "weight": 1
+        },
+        {
+          "source": "Sammy",
+          "target": "Karl",
+          "weight": 1
+        },
+        {
+          "source": "Sammy",
+          "target": "Zeph",
+          "weight": 76
+        },
+        {
+          "source": "Sammy",
+          "target": "Christo",
+          "weight": 3
+        },
+        {
+          "source": "Sammy",
+          "target": "Cassie",
+          "weight": 2
+        },
+        {
+          "source": "Sammy",
+          "target": "Jesse",
+          "weight": 1
+        },
+        {
+          "source": "Karl",
+          "target": "Zeph",
+          "weight": 1
+        },
+        {
+          "source": "Karl",
+          "target": "Christo",
+          "weight": 22
+        },
+        {
+          "source": "Karl",
+          "target": "Gregorio",
+          "weight": 5
+        },
+        {
+          "source": "Karl",
+          "target": "Cassie",
+          "weight": 6
+        },
+        {
+          "source": "Karl",
+          "target": "Jesse",
+          "weight": 9
+        },
+        {
+          "source": "Zeph",
+          "target": "Christo",
+          "weight": 2
+        },
+        {
+          "source": "Zeph",
+          "target": "Gregorio",
+          "weight": 1
+        },
+        {
+          "source": "Zeph",
+          "target": "Cassie",
+          "weight": 2
+        },
+        {
+          "source": "Zeph",
+          "target": "Jesse",
+          "weight": 1
+        },
+        {
+          "source": "Christo",
+          "target": "Gregorio",
+          "weight": 2
+        },
+        {
+          "source": "Christo",
+          "target": "Cassie",
+          "weight": 3
+        },
+        {
+          "source": "Christo",
+          "target": "Jesse",
+          "weight": 1
+        },
+        {
+          "source": "Gregorio",
+          "target": "Cassie",
+          "weight": 5
+        },
+        {
+          "source": "Gregorio",
+          "target": "Jesse",
+          "weight": 9
+        },
+        {
+          "source": "Cassie",
+          "target": "Jesse",
+          "weight": 25
+        }
+      ]
+    }
+  ]
+}

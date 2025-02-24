@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How to Play - Book Character Network Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .instruction-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .scoring {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>How to Play</h1>
+        </div>
+
+        <div class="instruction-card">
+            <h2>Game Overview</h2>
+            <p>Welcome to Littagrams! Test your book knowledge by identifying classic books from their characters.</p>
+        </div>
+
+        <div class="instruction-card">
+            <h2>How It Works</h2>
+            <ul>
+                <li>You start with 100 points, and the name of a minor character from a classic book. If you can guess the book, congratulations! You win 100 points</li>
+                <li>If you can’t, click "Reveal Next Character" to gradually unveil a slightly more prominent character from the book, although you’ll lose 10 points for every character you reveal. </li>
+            </ul>
+        </div>
+
+        <div class="instruction-card">
+            <h2>Scoring System</h2>
+            <div class="scoring">
+                <ul>
+                    <li>You start with 100 points for each book</li>
+                    <li>Each character reveal costs 10 points</li>
+                    <li>Each incorrect guess costs 10 points</li>
+                    <li>Skipping a book results in 0 points</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h2>Tips</h2>
+            <ul>
+                <li>The bigger a character's circle, the more often that character is mentioned</li>
+                <li>The thickness of the line between characters shows how often they appear together in the novel.</li>
+                <li>Don't worry about exact spelling, but try to get the title mostly correct</li>
+            </ul>
+        </div>
+
+        <a href="/" class="back-btn">Back to Game</a>
+    </div>
+</body>
+</html>

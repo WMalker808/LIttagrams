@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Character Network</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.6/standalone/umd/vis-network.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.6/styles/vis-network.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --location: #4ade80;
+            --location-dark: #22c55e;
+            --danger: #ef4444;
+            --danger-dark: #dc2626;
+            --success: #22c55e;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-progress {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4b5563;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .score-display {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        .score-number {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        .legend {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.character {
+            background: var(--primary);
+        }
+
+        .legend-dot.location {
+            background: var(--location);
+        }
+
+        #graph {
+            width: 100%;
+            height: 600px;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .info-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .info-btn:hover {
+            transform: translateY(-2px);
+            background: var(--primary);
+            color: white;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .danger-btn {
+            background: var(--danger);
+            color: white;
+        }
+
+        .danger-btn:hover {
+            background: var(--danger-dark);
+            transform: translateY(-2px);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        #message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #message.visible {
+            opacity: 1;
+        }
+
+        .message-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            #graph {
+                height: 400px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 0.5rem;
+                top: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Guess the Classic Book!</h1>
+            <div class="book-progress" id="book-progress"></div>
+        </div>
+
+        <div class="score-display">
+            Current Score
+            <div class="score-number" id="current-score">100</div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot character"></div>
+                <span>Characters</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot location"></div>
+                <span>Locations</span>
+            </div>
+        </div>
+
+        <a href="/instructions" class="info-btn">How to Play</a>
+
+        <div id="graph"></div>
+
+        <div class="controls">
+            <button id="reveal-btn" class="primary-btn">Reveal Next Character</button>
+            <button id="skip-btn" class="danger-btn">Skip This Book (0 points)</button>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="guess-input" placeholder="Enter your guess...">
+            <button id="submit-guess-btn" class="primary-btn">Submit</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let network;
+        let gameOver = false;
+        let totalScore = 0;
+        let booksCompleted = 0;
+
+        function initNetwork() {
+            const container = document.getElementById('graph');
+            const options = {
+                nodes: {
+                    shape: 'dot',
+                    size: 30,
+                    font: {
+                        size: 16,
+                        color: '#1f2937',
+                        face: 'Poppins'
+                    },
+                    borderWidth: 2
+                },
+                edges: {
+                    width: 2,
+                    color: {
+                        color: '#94a3b8',
+                        opacity: 0.7
+                    },
+                    smooth: {
+                        type: 'continuous'
+                    }
+                },
+                physics: {
+                    stabilization: true,
+                    barnesHut: {
+                        gravitationalConstant: -2000,
+                        centralGravity: 0.3,
+                        springLength: 150,
+                        springConstant: 0.04
+                    }
+                },
+                groups: {
+                    PERSON: {
+                        color: {
+                            background: '#818cf8',
+                            border: '#6366f1'
+                        }
+                    },
+                    GPE: {
+                        color: {
+                            background: '#4ade80',
+                            border: '#22c55e'
+                        }
+                    }
+                }
+            };
+
+            network = new vis.Network(container, { nodes: [], edges: [] }, options);
+        }
+
+        function updateNetwork(graphData) {
+            if (!graphData || !graphData.nodes || !graphData.links) {
+                console.error('Invalid graph data:', graphData);
+                return;
+            }
+            
+            const nodes = new vis.DataSet(
+                graphData.nodes.map(node => ({
+                    id: node.id,
+                    label: node.label || node.id,
+                    value: node.count,
+                    size: Math.sqrt(node.count) * 2,
+                    group: node.type  // Use the entity type for grouping
+                }))
+            );
+
+            const edges = new vis.DataSet(
+                graphData.links.map(link => ({
+                    from: link.source,
+                    to: link.target,
+                    value: link.weight,
+                    width: Math.sqrt(link.weight) / 5
+                }))
+            );
+
+            network.setData({ nodes, edges });
+        }
+
+        function updateBookProgress(current, total) {
+            gsap.from('#book-progress', {
+                opacity: 0,
+                y: -20,
+                duration: 0.5
+            });
+            document.getElementById('book-progress').textContent = 
+                `Book ${current} of ${total}`;
+        }
+
+        function showMessage(text, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = isError ? 'message-error visible' : 'message-success visible';
+            
+            gsap.from(messageDiv, {
+                y: 20,
+                opacity: 0,
+                duration: 0.3
+            });
+            
+            // Auto-hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.classList.remove('visible');
+            }, 5000);
+        }
+
+        function updateScore(score) {
+            const scoreElement = document.getElementById('current-score');
+            const oldScore = parseInt(scoreElement.textContent);
+            scoreElement.textContent = score;
+            
+            if (score < oldScore) {
+                gsap.from(scoreElement, {
+                    scale: 1.2,
+                    color: '#ef4444',
+                    duration: 0.3,
+                    onComplete: () => {
+                        gsap.to(scoreElement, {
+                            color: '#6366f1',
+                            duration: 0.3
+                        });
+                    }
+                });
+            }
+        }
+
+        function handleNextBook(data) {
+            if (data.nextBook) {
+                updateBookProgress(data.currentBook, data.totalBooks);
+                if (data.graph) {
+                    network.setData({ nodes: [], edges: [] });
+                    setTimeout(() => {
+                        updateNetwork(data.graph);
+                        gsap.from('#graph', {
+                            opacity: 0,
+                            scale: 0.95,
+                            duration: 0.5
+                        });
+                    }, 500);
+                }
+                gameOver = false;
+                showMessage(`Moving to Book ${data.currentBook}/${data.totalBooks}`);
+                updateScore(100);  // Reset score for new book
+            } else if (data.gameComplete) {
+                showMessage('🎉 Congratulations! You\'ve completed all books!');
+                gameOver = true;
+                document.getElementById('reveal-btn').disabled = true;
+                document.getElementById('skip-btn').disabled = true;
+                document.getElementById('submit-guess-btn').disabled = true;
+            }
+        }
+
+        // Initialize the application
+        window.addEventListener('load', async () => {
+            initNetwork();
+            gsap.from('.header', {
+                opacity: 0,
+                y: -30,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+            
+            // Start the game by revealing the first character
+            try {
+                const response = await fetch('/reveal', {
+                    method: 'POST'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                if (data.graph) {
+                    updateNetwork(data.graph);
+                    updateBookProgress(data.currentBook, data.totalBooks);
+                    document.getElementById('current-score').textContent = data.score || '100';
+                }
+            } catch (error) {
+                console.error('Error starting game:', error);
+                showMessage('Error starting game. Please try refreshing the page.', true);
+            }
+        });
+        
+        // Event Handlers for buttons
+        document.getElementById('reveal-btn').addEventListener('click', async () => {
+            if (gameOver) return;
+            
+            try {
+                const response = await fetch('/reveal', {
+                    method: 'POST'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                if (data.gameOver) {
+                    showMessage('No more characters to reveal!', true);
+                    return;
+                }
+                
+                if (data.graph) {
+                    updateNetwork(data.graph);
+                    updateScore(data.score);
+                }
+            } catch (error) {
+                console.error('Error revealing character:', error);
+                showMessage('Error revealing character. Please try again.', true);
+            }
+        });
+        
+        document.getElementById('skip-btn').addEventListener('click', async () => {
+            if (gameOver) return;
+            
+            try {
+                const response = await fetch('/skip', {
+                    method: 'POST'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                if (data.gameComplete) {
+                    showMessage('🎉 Game complete! No more books to play.', false);
+                    gameOver = true;
+                    return;
+                }
+                
+                handleNextBook(data);
+            } catch (error) {
+                console.error('Error skipping book:', error);
+                showMessage('Error skipping book. Please try again.', true);
+            }
+        });
+        
+        document.getElementById('submit-guess-btn').addEventListener('click', async () => {
+            if (gameOver) return;
+            
+            const guess = document.getElementById('guess-input').value.trim();
+            if (!guess) {
+                showMessage('Please enter a guess!', true);
+                return;
+            }
+            
+            try {
+                const response = await fetch('/guess', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ guess })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                if (data.correct) {
+                    showMessage(`🎉 Correct! Score: ${data.score}`);
+                    totalScore += data.score;
+                    booksCompleted++;
+                    handleNextBook(data);
+                } else {
+                    showMessage(`❌ Incorrect! Try again or reveal more characters. Score: ${data.score}`, true);
+                    updateScore(data.score);
+                }
+                
+                document.getElementById('guess-input').value = '';
+            } catch (error) {
+                console.error('Error submitting guess:', error);
+                showMessage('Error submitting guess. Please try again.', true);
+            }
+        });
+        
+        // Allow pressing Enter to submit guess
+        document.getElementById('guess-input').addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                document.getElementById('submit-guess-btn').click();
+            }
+        });
+    </script>
+</body>
+</html>
